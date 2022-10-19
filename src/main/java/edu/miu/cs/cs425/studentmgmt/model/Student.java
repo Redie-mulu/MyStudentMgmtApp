@@ -25,11 +25,12 @@ public class Student {
     private LocalDate dateOfEnrollment;
 
     @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "transcript_id", nullable = false)
+    @JoinColumn(name = "transcript_id", nullable = false)
     private Transcript transcript;
 
-//    @ManyToMany
-//    private List<Classroom> classrooms;
+    @ManyToMany(mappedBy = "students")
+
+    private List<Classroom> classrooms;
 
     public Student() {
     }
@@ -42,13 +43,13 @@ public class Student {
         this.transcript = transcript;
     }
 
-//    public List<Classroom> getClassrooms() {
-//        return classrooms;
-//    }
-//
-//    public void setClassrooms(List<Classroom> classrooms) {
-//        this.classrooms = classrooms;
-//    }
+    public List<Classroom> getClassrooms() {
+        return classrooms;
+    }
+
+    public void setClassrooms(List<Classroom> classrooms) {
+        this.classrooms = classrooms;
+    }
 
     public Student(Integer studentId, String studentNumber,
                    String firstName, String middleName,

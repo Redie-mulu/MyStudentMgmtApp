@@ -13,7 +13,8 @@ public class Transcript {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer transcriptId;
     private String degreeTitle;
-    @OneToOne
+
+    @OneToOne(mappedBy = "transcript")
     private Student student;
 
     public Transcript() {

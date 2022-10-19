@@ -16,8 +16,9 @@ public class Classroom {
     private String buildingName;
     private String roomNumber;
 
-//    @ManyToMany
-//    private List<Student> students;
+    @ManyToMany
+    @JoinTable(name = "student_classroom")
+    private List<Student> students;
 
     public Classroom() {
     }

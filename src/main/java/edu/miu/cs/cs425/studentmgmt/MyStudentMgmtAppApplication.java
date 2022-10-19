@@ -49,8 +49,8 @@ public class MyStudentMgmtAppApplication implements CommandLineRunner {
 
         // new Student
 
-//        s3.setTranscript(t1);
-//        studentService.saveStudent(s3);
+        s3.setTranscript(t1);
+        studentService.saveStudent(s3);
 
     }
 }
