@@ -7,10 +7,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentServiceImp implements StudentService {
-    @Autowired
+
+
     private StudentRepo studentRepo;
+
+    public StudentServiceImp(StudentRepo studentRepo) {
+        this.studentRepo = studentRepo;
+    }
+
     @Override
-    public void saveStudent(Student student) {
-        studentRepo.save(student);
+    public Student saveStudent(Student student) {
+        return studentRepo.save(student);
     }
 }

@@ -2,33 +2,55 @@ package edu.miu.cs.cs425.studentmgmt.model;
 
 import org.aspectj.lang.annotation.RequiredTypes;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Student {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long studentId;
-    @NotEmpty
-    private long studentNumber;
-    @NotEmpty
+    private Integer studentId;
+//    @NotEmpty
+    @Column(nullable = false)
+    private String studentNumber;
+//    @NotEmpty
     private String firstName;
     private String middleName;
-    @NotEmpty
+//    @NotEmpty
     private String lastName;
     private double cgpa;
     private LocalDate dateOfEnrollment;
 
+    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "transcript_id", nullable = false)
+    private Transcript transcript;
+
+//    @ManyToMany
+//    private List<Classroom> classrooms;
+
     public Student() {
     }
 
-    public Student(long studentId, long studentNumber,
+    public Transcript getTranscript() {
+        return transcript;
+    }
+
+    public void setTranscript(Transcript transcript) {
+        this.transcript = transcript;
+    }
+
+//    public List<Classroom> getClassrooms() {
+//        return classrooms;
+//    }
+//
+//    public void setClassrooms(List<Classroom> classrooms) {
+//        this.classrooms = classrooms;
+//    }
+
+    public Student(Integer studentId, String studentNumber,
                    String firstName, String middleName,
                    String lastName, double cgpa,
                    LocalDate dateOfEnrollment) {
@@ -41,19 +63,30 @@ public class Student {
         this.dateOfEnrollment = dateOfEnrollment;
     }
 
-    public long getStudentId() {
+    public Student(Integer studentId, String studentNumber, String firstName, String middleName, String lastName, double cgpa, LocalDate dateOfEnrollment, Transcript transcript) {
+        this.studentId = studentId;
+        this.studentNumber = studentNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.cgpa = cgpa;
+        this.dateOfEnrollment = dateOfEnrollment;
+        this.transcript = transcript;
+    }
+
+    public Integer getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(long studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
 
-    public long getStudentNumber() {
+    public String getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(long studentNumber) {
+    public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
     }
 
